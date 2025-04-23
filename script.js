@@ -7,6 +7,7 @@ const infoText = document.querySelector("#game-info-text");
 const roundBtn = document.querySelector("#round-button");
 const title = document.querySelector("#title");
 const pointsText = document.querySelector("#points-display");
+const beepSound = document.querySelector("#beep-sound");
 
 const boxesInfo = {
   boxes: [box1, box2, box3, box4],
@@ -19,7 +20,6 @@ const boxesInfo = {
   defaultColors: ["green", "red", "yellow", "blue"],
   roundColors: [],
   userRoundColors: [],
-  userMatchedRoundColors: false,
   points: 0,
   roundFlashCount: 1,
 };
@@ -61,7 +61,6 @@ const randomPatternGen = () => {
 
 const playStart = () => {
   playBtn.classList.add("hidden");
-  roundBtn.classList.remove("hidden");
   infoText.innerHTML = "";
   patternLengthGen();
 };
@@ -75,6 +74,7 @@ const patternLengthGen = () => {
 playBtn.addEventListener("click", playStart);
 
 const roundSet = () => {
+  roundBtn.classList.add("hidden");
   boxesInfo.roundColors = [];
   boxesInfo.userRoundColors = [];
   boxesInfo.userMatchedRoundColors = false;
@@ -89,7 +89,6 @@ roundBtn.addEventListener("click", roundSet);
 const successGuessHandler = (index) => {
   infoText.innerHTML = "Correct Attempt - Please Resume";
   infoText.style.color = boxesInfo.roundColors[index];
-  boxesInfo.userMatchedRoundColors = true;
 };
 
 const noSuccessGuessHandler = () => {
@@ -97,7 +96,6 @@ const noSuccessGuessHandler = () => {
   boxesInfo.roundColors = [];
   boxesInfo.userRoundColors = [];
   playBtn.innerHTML = "Play again?";
-  boxesInfo.userMatchedRoundColors = false;
   playBtn.classList.remove("hidden");
   roundBtn.classList.add("hidden");
 };
@@ -105,6 +103,7 @@ const noSuccessGuessHandler = () => {
 for (let i = 0; i < boxesInfo.boxes.length; i++) {
   boxesInfo.boxes[i].addEventListener("click", () => {
     if (boxesInfo.userRoundColors.length >= boxesInfo.roundColors.length) {
+      roundBtn.classList.remove("hidden");
       infoText.innerHTML = "Round complete, press 'Next Round' button";
       boxesInfo.roundColors = [];
       return;
@@ -129,6 +128,10 @@ for (let i = 0; i < boxesInfo.boxes.length; i++) {
       } else {
         noSuccessGuessHandler(j);
       }
+    }
+    console.log(boxesInfo.userRoundColors.length, boxesInfo.roundFlashCount);
+    if (boxesInfo.userRoundColors.length === boxesInfo.roundFlashCount) {
+      roundBtn.classList.remove("hidden");
     }
   });
 }
