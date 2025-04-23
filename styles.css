@@ -1,0 +1,97 @@
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/* CSS Reset Above */
+:root {
+  --borderRadius: 75%;
+  --borderWidth: solid black 0.33em;
+}
+
+body,
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1:hover {
+  color: blue;
+  cursor: pointer;
+}
+
+#game-container {
+  width: 50vh;
+  height: 50vh;
+}
+
+#game-box-row1,
+#game-box-row2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 50vh;
+  height: 50vh;
+}
+
+#game-box-row1 {
+  margin-bottom: -10.5em;
+}
+
+#game-box-row2 {
+  margin-top: -10.5em;
+}
+
+.game-box {
+  width: 50%;
+  height: 50%;
+}
+
+#game-box1 {
+  border-top-left-radius: var(--borderRadius);
+  background-color: green;
+  border: var(--borderWidth);
+  border-right: none;
+}
+#game-box1:hover {
+  background-color: rgb(115, 201, 115);
+}
+
+#game-box2 {
+  border-top-right-radius: var(--borderRadius);
+  background-color: red;
+  border: var(--borderWidth);
+  border-bottom: none;
+}
+
+#game-box2:hover {
+  background-color: rgb(231, 134, 134);
+}
+
+#game-box3 {
+  border-bottom-left-radius: var(--borderRadius);
+  background-color: yellow;
+  border: var(--borderWidth);
+  border-right: none;
+}
+
+#game-box3:hover {
+  background-color: rgb(255, 174, 66);
+}
+
+#game-box4 {
+  border-bottom-right-radius: var(--borderRadius);
+  background-color: blue;
+  border: var(--borderWidth);
+}
+
+#game-box4:hover {
+  background-color: rgb(111, 111, 239);
+}
