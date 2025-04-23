@@ -3,6 +3,10 @@ const box2 = document.querySelector("#game-box2");
 const box3 = document.querySelector("#game-box3");
 const box4 = document.querySelector("#game-box4");
 const playBtn = document.querySelector("#play");
+const infoText = document.querySelector("#game-info-text");
+const roundBtn = document.querySelector("#round-button");
+const title = document.querySelector("#title");
+const pointsText = document.querySelector("#points-display");
 
 const boxesInfo = {
   boxes: [box1, box2, box3, box4],
@@ -15,6 +19,9 @@ const boxesInfo = {
   defaultColors: ["green", "red", "yellow", "blue"],
   roundColors: [],
   userRoundColors: [],
+  userMatchedRoundColors: false,
+  points: 0,
+  roundFlashCount: 1,
 };
 
 const colorChange = (boxNum, index) => {
@@ -48,24 +55,57 @@ const randomPatternGen = () => {
       colorChange(box4, 3);
       setTimeout(colorReset, 1000, box4, 3);
       break;
-    default:
-      console.log("Unexpected number");
   }
   console.log(boxesInfo.roundColors);
 };
+
+const playStart = () => {
+  playBtn.classList.add("hidden");
+  roundBtn.classList.remove("hidden");
+  infoText.innerHTML = "";
+  patternLengthGen();
+};
+
 const patternLengthGen = () => {
-  //   let randomPaternNum = Math.round(1 + Math.random() * 8);
-  let randomPaternNum = 3;
-  // console.log(randomPaternNum);
-  for (let i = 0; i < randomPaternNum; i++) {
+  console.log(boxesInfo.roundFlashCount);
+  for (let i = 0; i < boxesInfo.roundFlashCount; i++) {
     setTimeout(randomPatternGen, 1500 * i);
   }
 };
-play.addEventListener("click", patternLengthGen);
+playBtn.addEventListener("click", playStart);
+
+const roundSet = () => {
+  boxesInfo.roundColors = [];
+  boxesInfo.userRoundColors = [];
+  boxesInfo.userMatchedRoundColors = false;
+  boxesInfo.points += 1;
+  boxesInfo.roundFlashCount += 1;
+  infoText.innerHTML = "";
+  pointsText.innerHTML = `Points: ${boxesInfo.points}`;
+  patternLengthGen();
+};
+roundBtn.addEventListener("click", roundSet);
+
+const successGuessHandler = (index) => {
+  infoText.innerHTML = "Correct Attempt - Please Resume";
+  infoText.style.color = boxesInfo.roundColors[index];
+  boxesInfo.userMatchedRoundColors = true;
+};
+
+const noSuccessGuessHandler = () => {
+  infoText.innerHTML = "Incorrect Attempt - Game has been reset";
+  boxesInfo.roundColors = [];
+  boxesInfo.userRoundColors = [];
+  playBtn.innerHTML = "Play again?";
+  boxesInfo.userMatchedRoundColors = false;
+  playBtn.classList.remove("hidden");
+  roundBtn.classList.add("hidden");
+};
 
 for (let i = 0; i < boxesInfo.boxes.length; i++) {
   boxesInfo.boxes[i].addEventListener("click", () => {
     if (boxesInfo.userRoundColors.length >= boxesInfo.roundColors.length) {
+      infoText.innerHTML = "Round complete, press 'Next Round' button";
       boxesInfo.roundColors = [];
       return;
     }
@@ -83,16 +123,11 @@ for (let i = 0; i < boxesInfo.boxes.length; i++) {
         boxesInfo.userRoundColors.push("Blue");
         break;
     }
-    console.log(boxesInfo.userRoundColors);
     for (let j = 0; j < boxesInfo.userRoundColors.length; j++) {
       if (boxesInfo.roundColors[j] === boxesInfo.userRoundColors[j]) {
-        console.log(boxesInfo.roundColors[j]);
-        console.log(boxesInfo.userRoundColors[j]);
+        successGuessHandler(j);
       } else {
-        console.log("Attempt failed");
-        boxesInfo.roundColors = [];
-        boxesInfo.userRoundColors = [];
-        playBtn.innerHTML = "Play again?";
+        noSuccessGuessHandler(j);
       }
     }
   });

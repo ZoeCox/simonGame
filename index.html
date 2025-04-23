@@ -6,13 +6,17 @@
     <link rel="stylesheet" href="styles.css" />
     <meta
       name="description"
-      content="A memory game based on the Simon Memory toy."
-    />
+      content="A memory game based on the Simon Memory toy." />
     <title>Simon Game</title>
   </head>
   <body>
+    <header>
+      <h1 id="title">Memory Game</h1>
+      <h3 id="points-display">Points: 0</h3>
+      <h2 id="game-info-text"></h2>
+      <button type="submit" id="play">Play</button>
+    </header>
     <main>
-      <h1 id="play">Play</h1>
       <div id="game-container">
         <div id="game-box-row1">
           <div class="game-box" id="game-box1"></div>
@@ -24,6 +28,7 @@
         </div>
       </div>
     </main>
+    <button type="submit" id="round-button" class="hidden">Next Round</button>
     <script src="script.js"></script>
   </body>
 </html>
