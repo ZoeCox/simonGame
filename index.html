@@ -4,19 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cal+Sans&family=Eagle+Lake&family=Metamorphous&display=swap"
+      rel="stylesheet"
+    />
     <meta
       name="description"
-      content="A memory game based on the Simon Memory toy." />
+      content="A memory game based on the Simon Memory toy."
+    />
     <title>Simon Game</title>
   </head>
   <body>
-    <audio id="beep-sound" src="./media/beepSound.mp3"></audio>
+    <!-- <audio id="beep-sound" src="./media/beepSound.mp3"></audio> -->
     <!-- Sound from: "https://pixabay.com/users/u_edtmwfwu7c-46613712/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=329314">u_edtmwfwu7c</a> from <a href="https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=329314" - Pixabay -->
     <header>
       <h1 id="title">Memory Game</h1>
       <h3 id="points-display">Points: 0</h3>
-      <h2 id="game-info-text"></h2>
-      <button type="submit" id="play">Play</button>
+      <h3 id="highscore-display">High Score: None Set</h3>
+      <div id="game-state-container">
+        <button type="submit" id="play">Play</button>
+        <h2 id="game-info-text"></h2>
+      </div>
     </header>
     <main>
       <div id="game-container">
@@ -32,6 +42,5 @@
     </main>
     <button type="submit" id="round-button" class="hidden">Next Round</button>
     <script src="script.js"></script>
-
   </body>
 </html>

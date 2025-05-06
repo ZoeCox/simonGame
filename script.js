@@ -7,7 +7,24 @@ const infoText = document.querySelector("#game-info-text");
 const roundBtn = document.querySelector("#round-button");
 const title = document.querySelector("#title");
 const pointsText = document.querySelector("#points-display");
+const highScoreDisplay = document.querySelector("#highscore-display");
 const beepSound = document.querySelector("#beep-sound");
+
+const storedPlayerVals = localStorage.getItem("playerVals");
+
+const playerVals = {
+  highScore: 0,
+};
+
+console.log(storedPlayerVals[storedPlayerVals.length - 2], storedPlayerVals);
+
+if (playerVals.highScore !== null) {
+  highScoreDisplay.innerHTML = `High Score: ${
+    storedPlayerVals[storedPlayerVals.length - 2]
+  }`;
+} else {
+  highScoreDisplay.innerHTML = "High Score: None Set";
+}
 
 const boxesInfo = {
   boxes: [box1, box2, box3, box4],
@@ -60,13 +77,13 @@ const randomPatternGen = () => {
 };
 
 const playStart = () => {
+  console.log("play button clicked");
   playBtn.classList.add("hidden");
   infoText.innerHTML = "";
   patternLengthGen();
 };
 
 const patternLengthGen = () => {
-  console.log(boxesInfo.roundFlashCount);
   for (let i = 0; i < boxesInfo.roundFlashCount; i++) {
     setTimeout(randomPatternGen, 1500 * i);
   }
@@ -77,32 +94,46 @@ const roundSet = () => {
   roundBtn.classList.add("hidden");
   boxesInfo.roundColors = [];
   boxesInfo.userRoundColors = [];
-  boxesInfo.userMatchedRoundColors = false;
   boxesInfo.points += 1;
   boxesInfo.roundFlashCount += 1;
-  infoText.innerHTML = "";
   pointsText.innerHTML = `Points: ${boxesInfo.points}`;
-  patternLengthGen();
+  playStart();
 };
 roundBtn.addEventListener("click", roundSet);
 
-const successGuessHandler = (index) => {
-  infoText.innerHTML = "Correct Attempt - Please Resume";
-  infoText.style.color = boxesInfo.roundColors[index];
+const successGuessHandler = () => {
+  infoText.innerHTML = "✔️";
+  setTimeout(() => {
+    infoText.innerHTML = "";
+  }, 750);
 };
 
 const noSuccessGuessHandler = () => {
-  infoText.innerHTML = "Incorrect Attempt - Game has been reset";
-  boxesInfo.roundColors = [];
-  boxesInfo.userRoundColors = [];
-  playBtn.innerHTML = "Play again?";
-  playBtn.classList.remove("hidden");
+  console.log("the user failed");
+  infoText.innerHTML = "❌";
+  if (boxesInfo.points > playerVals.highScore) {
+    localStorage.clear();
+    playerVals.highScore = boxesInfo.points;
+    localStorage.setItem("playerVals", JSON.stringify(playerVals));
+    highScoreDisplay.innerHTML = `High Score: ${
+      storedPlayerVals[storedPlayerVals.length - 2]
+    }`;
+  }
   roundBtn.classList.add("hidden");
+  roundBtn.style.display = "none";
+  playBtn.classList.remove("hidden");
+  playBtn.innerHTML = "Play again?";
+  if (playBtn.innerHTML === "Play again?") {
+    playBtn.addEventListener("click", () => {
+      location.reload();
+    });
+  }
 };
 
 for (let i = 0; i < boxesInfo.boxes.length; i++) {
   boxesInfo.boxes[i].addEventListener("click", () => {
     if (boxesInfo.userRoundColors.length >= boxesInfo.roundColors.length) {
+      console.log("round is complete");
       roundBtn.classList.remove("hidden");
       infoText.innerHTML = "Round complete, press 'Next Round' button";
       boxesInfo.roundColors = [];
@@ -124,12 +155,11 @@ for (let i = 0; i < boxesInfo.boxes.length; i++) {
     }
     for (let j = 0; j < boxesInfo.userRoundColors.length; j++) {
       if (boxesInfo.roundColors[j] === boxesInfo.userRoundColors[j]) {
-        successGuessHandler(j);
+        successGuessHandler();
       } else {
-        noSuccessGuessHandler(j);
+        noSuccessGuessHandler();
       }
     }
-    console.log(boxesInfo.userRoundColors.length, boxesInfo.roundFlashCount);
     if (boxesInfo.userRoundColors.length === boxesInfo.roundFlashCount) {
       roundBtn.classList.remove("hidden");
     }

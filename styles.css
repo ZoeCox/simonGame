@@ -4,32 +4,82 @@
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 body {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: "Cal Sans", sans-serif;
+  background-color: rgb(252, 196, 205);
 }
 
 header {
   position: fixed;
   top: 0;
   align-items: center;
+  font-size: 1.15em;
+}
+
+button {
+  background-color: white;
+  border: solid black 0.15em;
+}
+
+/* button:hover {
+  color: white;
+} */
+
+#points-display,
+#highscore-display {
+  display: inline-block;
+}
+
+#points-display {
+  margin-right: 0.75em;
+  margin-bottom: -1em;
+}
+
+#highscore-display {
+  margin-left: 0.75em;
+  margin-bottom: -1em;
+}
+
+#game-state-container {
+  display: block;
+  text-align: center;
+}
+
+#game-info-text {
+  margin-bottom: -0.75em;
+}
+
+#play {
+  margin-top: 1em;
+  font-size: 1.15em;
+}
+
+#game-info-text,
+#play {
+  display: inline-block;
 }
 
 main {
-  margin-top: 4em;
+  margin-top: 9em;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 80vh;
+  height: 70vh;
 }
 
 h1:hover {
   color: blue;
   cursor: pointer;
+}
+
+#game-info-text {
+  text-align: center;
 }
 
 #game-container {
@@ -95,7 +145,8 @@ h1:hover {
 }
 
 #round-button {
-  margin-top: 4em;
+  font-size: 1.5em;
+  margin-top: 5em;
   position: absolute;
   top: 70%;
 }
