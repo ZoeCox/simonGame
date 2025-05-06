@@ -28,13 +28,9 @@ if (playerVals.highScore !== null) {
 
 const boxesInfo = {
   boxes: [box1, box2, box3, box4],
-  lightUpColors: [
-    "rgb(115, 201, 115)",
-    "rgb(231, 134, 134)",
-    "rgb(255, 174, 66)",
-    "rgb(111, 111, 239)",
-  ],
-  defaultColors: ["green", "red", "yellow", "blue"],
+  //order for both light up and default colors is: green, red,  yellow, blue
+  lightUpColors: ["#9dd59d", "#fcf9aa", "#f1efbcs", "#a7c7e7"],
+  defaultColors: ["#73c973", "#ff5733", "#fcf45c", "#5e5edd"],
   roundColors: [],
   userRoundColors: [],
   points: 0,
@@ -102,10 +98,15 @@ const roundSet = () => {
 roundBtn.addEventListener("click", roundSet);
 
 const successGuessHandler = () => {
-  infoText.innerHTML = "✔️";
-  setTimeout(() => {
-    infoText.innerHTML = "";
-  }, 750);
+  if (boxesInfo.userRoundColors.length === boxesInfo.roundFlashCount) {
+    infoText.innerHTML = "Round complete, press 'Next Round' button";
+    roundBtn.classList.remove("hidden");
+  } else {
+    infoText.innerHTML = "✔️";
+    setTimeout(() => {
+      infoText.innerHTML = "";
+    }, 750);
+  }
 };
 
 const noSuccessGuessHandler = () => {
@@ -132,13 +133,13 @@ const noSuccessGuessHandler = () => {
 
 for (let i = 0; i < boxesInfo.boxes.length; i++) {
   boxesInfo.boxes[i].addEventListener("click", () => {
-    if (boxesInfo.userRoundColors.length >= boxesInfo.roundColors.length) {
-      console.log("round is complete");
-      roundBtn.classList.remove("hidden");
-      infoText.innerHTML = "Round complete, press 'Next Round' button";
-      boxesInfo.roundColors = [];
-      return;
-    }
+    // if (boxesInfo.userRoundColors.length >= boxesInfo.roundColors.length) {
+    //   console.log("round is complete");
+    //   roundBtn.classList.remove("hidden");
+    //   infoText.innerHTML = "Round complete, press 'Next Round' button";
+    //   boxesInfo.roundColors = [];
+    //   return;
+    // }
     switch (boxesInfo.boxes[i]) {
       case box1:
         boxesInfo.userRoundColors.push("Green");
@@ -159,9 +160,6 @@ for (let i = 0; i < boxesInfo.boxes.length; i++) {
       } else {
         noSuccessGuessHandler();
       }
-    }
-    if (boxesInfo.userRoundColors.length === boxesInfo.roundFlashCount) {
-      roundBtn.classList.remove("hidden");
     }
   });
 }

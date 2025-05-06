@@ -1,6 +1,15 @@
 :root {
   --borderRadius: 75%;
   --borderWidth: solid black 0.33em;
+  --baseGreen: #73c973;
+  --lightUpGreen: #9dd59d;
+  --baseRed: #ff5733;
+  --lightUpRed: #e78686;
+  --baseYellow: #fcf45c;
+  --lightUpYellow: #f1efbc;
+  --baseBlue: #5e5edd;
+  --lightUpBlue: #a7c7e7;
+  --backGroundPink: rgb(252, 196, 205);
 }
 
 .hidden {
@@ -12,7 +21,7 @@ body {
   align-items: center;
   justify-content: center;
   font-family: "Cal Sans", sans-serif;
-  background-color: rgb(252, 196, 205);
+  background-color: var(--backGroundPink);
 }
 
 header {
@@ -25,11 +34,8 @@ header {
 button {
   background-color: white;
   border: solid black 0.15em;
+  font-weight: bold;
 }
-
-/* button:hover {
-  color: white;
-} */
 
 #points-display,
 #highscore-display {
@@ -66,16 +72,11 @@ button {
 }
 
 main {
-  margin-top: 9em;
+  margin-top: 10em;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 70vh;
-}
-
-h1:hover {
-  color: blue;
-  cursor: pointer;
 }
 
 #game-info-text {
@@ -83,8 +84,8 @@ h1:hover {
 }
 
 #game-container {
-  width: 50vh;
-  height: 50vh;
+  width: 45vh;
+  height: 45vh;
 }
 
 #game-box-row1,
@@ -102,46 +103,50 @@ h1:hover {
 }
 
 #game-box1 {
+  box-shadow: -5px -10px 20px 5px rgb(28, 143, 28) inset;
   border-top-left-radius: var(--borderRadius);
-  background-color: green;
+  background-color: var(--baseGreen);
   border: var(--borderWidth);
   border-right: none;
   border-bottom: none;
 }
 #game-box1:hover {
-  background-color: rgb(115, 201, 115);
+  background-color: var(--lightUpGreen);
 }
 
 #game-box2 {
+  box-shadow: 5px -10px 20px 5px rgb(167, 35, 35) inset;
   border-top-right-radius: var(--borderRadius);
-  background-color: red;
+  background-color: var(--baseRed);
   border: var(--borderWidth);
   border-bottom: none;
 }
 
 #game-box2:hover {
-  background-color: rgb(231, 134, 134);
+  background-color: var(--lightUpRed);
 }
 
 #game-box3 {
+  box-shadow: -5px 10px 20px 5px rgb(179, 179, 10) inset;
   border-bottom-left-radius: var(--borderRadius);
-  background-color: yellow;
+  background-color: var(--baseYellow);
   border: var(--borderWidth);
   border-right: none;
 }
 
 #game-box3:hover {
-  background-color: rgb(255, 174, 66);
+  background-color: var(--lightUpYellow);
 }
 
 #game-box4 {
+  box-shadow: 5px 10px 20px 5px rgb(59, 59, 216) inset;
   border-bottom-right-radius: var(--borderRadius);
-  background-color: blue;
+  background-color: var(--baseBlue);
   border: var(--borderWidth);
 }
 
 #game-box4:hover {
-  background-color: rgb(111, 111, 239);
+  background-color: lightblue;
 }
 
 #round-button {
