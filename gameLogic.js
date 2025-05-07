@@ -88,8 +88,17 @@ const playStart = () => {
 
 const patternLengthGen = () => {
   for (let i = 0; i < boxesInfo.roundFlashCount; i++) {
+    // boxesInfo.boxes[0].disabled = true;
+    // boxesInfo.boxes[1].disabled = true;
+    // boxesInfo.boxes[2].disabled = true;
+    // boxesInfo.boxes[3].disabled = true;
+    //fix the boxes being clickable when flashing!!
     setTimeout(randomPatternGen, 1500 * i);
   }
+  // boxesInfo.boxes[0].disabled = false;
+  // boxesInfo.boxes[1].disabled = false;
+  // boxesInfo.boxes[2].disabled = false;
+  // boxesInfo.boxes[3].disabled = false;
 };
 playBtn.addEventListener("click", playStart);
 
