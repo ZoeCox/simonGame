@@ -158,7 +158,7 @@ main {
 }
 
 footer {
-  margin-top: 5em;
-  position: absolute;
+  margin-top: 4em;
+  position: fixed;
   top: 80%;
 }
