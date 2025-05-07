@@ -34,7 +34,7 @@ const boxesInfo = {
   boxes: [box1, box2, box3, box4],
   //order for both light up and default colors is: green, red,  yellow, blue
   defaultColors: ["#73c973", "#ff5733", "#fcf45c", "#5e5edd"],
-  lightUpColors: ["#9dd59d", "#e78686", "#f1efbc", "#a7c7e7"],
+  lightUpColors: ["#d0e9d0", "#fcacac", "#f1f1cf", "#b6d0eb"],
   roundColors: [],
   userRoundColors: [],
   points: 0,

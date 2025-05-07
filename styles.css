@@ -2,13 +2,13 @@
   --borderRadius: 90%;
   --borderWidth: solid black 0.33em;
   --baseGreen: #73c973;
-  --lightUpGreen: #9dd59d;
+  --lightUpGreen: #d0e9d0;
   --baseRed: #ff5733;
-  --lightUpRed: #e78686;
+  --lightUpRed: #fcacac;
   --baseYellow: #fcf45c;
-  --lightUpYellow: #f1efbc;
+  --lightUpYellow: #f1f1cf;
   --baseBlue: #5e5edd;
-  --lightUpBlue: #a7c7e7;
+  --lightUpBlue: #b6d0eb;
   --backGroundPink: rgb(252, 196, 205);
 }
 
@@ -73,7 +73,7 @@ button {
 }
 
 main {
-  margin-top: 10em;
+  margin-top: 11em;
   display: flex;
   align-items: center;
   justify-content: center;
