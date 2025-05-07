@@ -10,20 +10,22 @@ const pointsText = document.querySelector("#points-display");
 const highScoreDisplay = document.querySelector("#highscore-display");
 const beepSound = document.querySelector("#beep-sound");
 
-const storedPlayerVals = localStorage.getItem("playerVals");
+title.addEventListener("click", () => {
+  localStorage.clear();
+});
 
 const playerVals = {
   highScore: 0,
 };
 
-console.log(storedPlayerVals[storedPlayerVals.length - 2], storedPlayerVals);
+const storedPlayerVals = localStorage.getItem("highscoreVal");
 
-if (playerVals.highScore !== null) {
-  highScoreDisplay.innerHTML = `High Score: ${
-    storedPlayerVals[storedPlayerVals.length - 2]
-  }`;
+console.log(typeof storedPlayerVals, storedPlayerVals);
+
+if (storedPlayerVals !== null) {
+  highScoreDisplay.innerHTML = `High Score: ${storedPlayerVals}`;
 } else {
-  highScoreDisplay.innerHTML = "High Score: None Set";
+  highScoreDisplay.innerHTML = `High Score: ${playerVals.highScore}`;
 }
 
 const boxesInfo = {
@@ -73,7 +75,6 @@ const randomPatternGen = () => {
 };
 
 const playStart = () => {
-  console.log("play button clicked");
   playBtn.classList.add("hidden");
   infoText.innerHTML = "";
   patternLengthGen();
@@ -115,10 +116,12 @@ const noSuccessGuessHandler = () => {
   if (boxesInfo.points > playerVals.highScore) {
     localStorage.clear();
     playerVals.highScore = boxesInfo.points;
-    localStorage.setItem("playerVals", JSON.stringify(playerVals));
-    highScoreDisplay.innerHTML = `High Score: ${
-      storedPlayerVals[storedPlayerVals.length - 2]
-    }`;
+    localStorage.setItem("highscoreVal", JSON.stringify(playerVals));
+    if (storedPlayerVals !== null) {
+      highScoreDisplay.innerHTML = `High Score: ${storedPlayerVals}`;
+    } else {
+      highScoreDisplay.innerHTML = `High Score: ${playerVals.highScore}`;
+    }
   }
   roundBtn.classList.add("hidden");
   roundBtn.style.display = "none";
@@ -133,13 +136,6 @@ const noSuccessGuessHandler = () => {
 
 for (let i = 0; i < boxesInfo.boxes.length; i++) {
   boxesInfo.boxes[i].addEventListener("click", () => {
-    // if (boxesInfo.userRoundColors.length >= boxesInfo.roundColors.length) {
-    //   console.log("round is complete");
-    //   roundBtn.classList.remove("hidden");
-    //   infoText.innerHTML = "Round complete, press 'Next Round' button";
-    //   boxesInfo.roundColors = [];
-    //   return;
-    // }
     switch (boxesInfo.boxes[i]) {
       case box1:
         boxesInfo.userRoundColors.push("Green");
