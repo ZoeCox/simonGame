@@ -81,6 +81,10 @@ const randomPatternGen = () => {
 };
 
 const playStart = () => {
+  boxesInfo.boxes[0].style.pointerEvents = "none";
+  boxesInfo.boxes[1].style.pointerEvents = "none";
+  boxesInfo.boxes[2].style.pointerEvents = "none";
+  boxesInfo.boxes[3].style.pointerEvents = "none";
   playBtn.classList.add("hidden");
   infoText.innerHTML = "";
   patternLengthGen();
@@ -88,17 +92,9 @@ const playStart = () => {
 
 const patternLengthGen = () => {
   for (let i = 0; i < boxesInfo.roundFlashCount; i++) {
-    // boxesInfo.boxes[0].disabled = true;
-    // boxesInfo.boxes[1].disabled = true;
-    // boxesInfo.boxes[2].disabled = true;
-    // boxesInfo.boxes[3].disabled = true;
     //fix the boxes being clickable when flashing!!
     setTimeout(randomPatternGen, 1500 * i);
   }
-  // boxesInfo.boxes[0].disabled = false;
-  // boxesInfo.boxes[1].disabled = false;
-  // boxesInfo.boxes[2].disabled = false;
-  // boxesInfo.boxes[3].disabled = false;
 };
 playBtn.addEventListener("click", playStart);
 
@@ -128,7 +124,7 @@ const successGuessHandler = () => {
 const noSuccessGuessHandler = () => {
   infoText.innerHTML = "❌";
   if (boxesInfo.points > Number(storedHighscore)) {
-    localStorage.clear();
+    localStorage.removeItem("storedHighscore");
     highScore = boxesInfo.points;
     localStorage.setItem("highscoreVal", JSON.stringify(highScore));
     if (storedHighscore !== null) {

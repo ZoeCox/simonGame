@@ -1,22 +1,25 @@
 const modeBtn = document.querySelector("#mode-switcher");
-let count = 1;
-
 let darkMode = false;
-// localStorage.setItem("darkModePref", JSON.stringify(darkMode));
 
 const storedModePref = localStorage.getItem("darkModePref");
 
 console.log(storedModePref, typeof storedModePref);
 
 const modePrefExecuter = () => {
-  storedModePref === "false"
-    ? document.querySelector("body").classList.add("dark-mode")
-    : document.querySelector("body").classList.remove("dark-mode");
+  if (storedModePref === "false" || storedModePref === null) {
+    modeBtn.innerHTML = "🌙";
+    darkMode = false;
+    document.querySelector("body").classList.remove("dark-mode");
+  } else {
+    modeBtn.innerHTML = "☀️";
+    darkMode = true;
+    document.querySelector("body").classList.add("dark-mode");
+  }
 };
-//fix this so dark mode preference persists
+modePrefExecuter();
 
 const darkModeFunc = () => {
-  if (count % 2) {
+  if (darkMode === false) {
     document.querySelector("body").classList.add("dark-mode");
     modeBtn.innerHTML = "☀️";
     darkMode = true;
@@ -27,8 +30,6 @@ const darkModeFunc = () => {
     darkMode = false;
     localStorage.setItem("darkModePref", JSON.stringify(darkMode));
   }
-  count++;
-  console.log(count);
 };
 
 modeBtn.addEventListener("click", darkModeFunc);
