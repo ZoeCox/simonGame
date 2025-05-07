@@ -118,7 +118,7 @@ const successGuessHandler = () => {
 
 const noSuccessGuessHandler = () => {
   infoText.innerHTML = "❌";
-  if (boxesInfo.points > highScore) {
+  if (boxesInfo.points > Number(storedHighscore)) {
     localStorage.clear();
     highScore = boxesInfo.points;
     localStorage.setItem("highscoreVal", JSON.stringify(highScore));
