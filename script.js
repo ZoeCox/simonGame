@@ -29,8 +29,8 @@ if (storedHighscore !== null) {
 const boxesInfo = {
   boxes: [box1, box2, box3, box4],
   //order for both light up and default colors is: green, red,  yellow, blue
-  lightUpColors: ["#9dd59d", "#fcf9aa", "#f1efbcs", "#a7c7e7"],
   defaultColors: ["#73c973", "#ff5733", "#fcf45c", "#5e5edd"],
+  lightUpColors: ["#9dd59d", "#e78686", "#f1efbc", "#a7c7e7"],
   roundColors: [],
   userRoundColors: [],
   points: 0,
