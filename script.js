@@ -10,12 +10,16 @@ const pointsText = document.querySelector("#points-display");
 const highScoreDisplay = document.querySelector("#highscore-display");
 const beepSound = document.querySelector("#beep-sound");
 
+const audioPlay = () => {
+  beepSound.currentTime = 0;
+  beepSound.play();
+};
+
 title.addEventListener("click", () => {
   localStorage.clear();
 });
 
 let highScore = 0;
-
 const storedHighscore = localStorage.getItem("highscoreVal");
 
 console.log(storedHighscore);
@@ -49,21 +53,25 @@ const randomPatternGen = () => {
   let randomColorNum = Math.round(1 + Math.random() * 3);
   switch (randomColorNum) {
     case 1:
+      audioPlay();
       boxesInfo.roundColors.push("Green");
       colorChange(box1, 0);
       setTimeout(colorReset, 1000, box1, 0);
       break;
     case 2:
+      audioPlay();
       boxesInfo.roundColors.push("Red");
       colorChange(box2, 1);
       setTimeout(colorReset, 1000, box2, 1);
       break;
     case 3:
+      audioPlay();
       boxesInfo.roundColors.push("Yellow");
       colorChange(box3, 2);
       setTimeout(colorReset, 1000, box3, 2);
       break;
     case 4:
+      audioPlay();
       boxesInfo.roundColors.push("Blue");
       colorChange(box4, 3);
       setTimeout(colorReset, 1000, box4, 3);
@@ -136,15 +144,23 @@ for (let i = 0; i < boxesInfo.boxes.length; i++) {
     switch (boxesInfo.boxes[i]) {
       case box1:
         boxesInfo.userRoundColors.push("Green");
+        colorChange(box1, 0);
+        setTimeout(colorReset, 500, box1, 0);
         break;
       case box2:
         boxesInfo.userRoundColors.push("Red");
+        colorChange(box2, 1);
+        setTimeout(colorReset, 500, box2, 1);
         break;
       case box3:
         boxesInfo.userRoundColors.push("Yellow");
+        colorChange(box3, 2);
+        setTimeout(colorReset, 500, box3, 2);
         break;
       case box4:
         boxesInfo.userRoundColors.push("Blue");
+        colorChange(box4, 3);
+        setTimeout(colorReset, 500, box4, 3);
         break;
     }
     for (let j = 0; j < boxesInfo.userRoundColors.length; j++) {
