@@ -18,7 +18,7 @@ let highScore = 0;
 
 const storedHighscore = localStorage.getItem("highscoreVal");
 
-console.log(typeof storedHighscore, storedHighscore);
+console.log(storedHighscore);
 
 if (storedHighscore !== null) {
   highScoreDisplay.innerHTML = `High Score: ${storedHighscore}`;
@@ -109,7 +109,6 @@ const successGuessHandler = () => {
 };
 
 const noSuccessGuessHandler = () => {
-  console.log("the user failed");
   infoText.innerHTML = "❌";
   if (boxesInfo.points > highScore) {
     localStorage.clear();

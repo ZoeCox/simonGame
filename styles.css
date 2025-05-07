@@ -1,5 +1,5 @@
 :root {
-  --borderRadius: 75%;
+  --borderRadius: 90%;
   --borderWidth: solid black 0.33em;
   --baseGreen: #73c973;
   --lightUpGreen: #9dd59d;
@@ -154,4 +154,10 @@ main {
   margin-top: 5em;
   position: absolute;
   top: 70%;
+}
+
+footer {
+  margin-top: 7em;
+  position: absolute;
+  top: 80%;
 }
