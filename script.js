@@ -145,22 +145,22 @@ for (let i = 0; i < boxesInfo.boxes.length; i++) {
       case box1:
         boxesInfo.userRoundColors.push("Green");
         colorChange(box1, 0);
-        setTimeout(colorReset, 500, box1, 0);
+        setTimeout(colorReset, 750, box1, 0);
         break;
       case box2:
         boxesInfo.userRoundColors.push("Red");
         colorChange(box2, 1);
-        setTimeout(colorReset, 500, box2, 1);
+        setTimeout(colorReset, 750, box2, 1);
         break;
       case box3:
         boxesInfo.userRoundColors.push("Yellow");
         colorChange(box3, 2);
-        setTimeout(colorReset, 500, box3, 2);
+        setTimeout(colorReset, 750, box3, 2);
         break;
       case box4:
         boxesInfo.userRoundColors.push("Blue");
         colorChange(box4, 3);
-        setTimeout(colorReset, 500, box4, 3);
+        setTimeout(colorReset, 750, box4, 3);
         break;
     }
     for (let j = 0; j < boxesInfo.userRoundColors.length; j++) {
