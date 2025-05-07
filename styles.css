@@ -29,7 +29,7 @@ header {
   position: fixed;
   top: 0;
   align-items: center;
-  font-size: 1.15em;
+  font-size: 1.1em;
 }
 
 button {
@@ -154,13 +154,13 @@ main {
 
 #round-button {
   font-size: 1.5em;
-  margin-top: 5.5em;
+  margin-top: 5em;
   position: absolute;
   top: 70%;
 }
 
 footer {
-  margin-top: 5.5em;
+  margin-top: 5em;
   position: fixed;
   top: 80%;
 }
