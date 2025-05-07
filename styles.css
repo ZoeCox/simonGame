@@ -1,6 +1,8 @@
 :root {
   --borderRadius: 90%;
   --borderWidth: solid black 0.33em;
+  --darkModeBorderWidth: solid rgb(248, 241, 241) 0.33em;
+  --darkModeTextColor: rgb(248, 241, 241);
   --baseGreen: #73c973;
   --lightUpGreen: #d0e9d0;
   --baseRed: #ff5733;
@@ -10,6 +12,7 @@
   --baseBlue: #5e5edd;
   --lightUpBlue: #b6d0eb;
   --backGroundPink: rgb(252, 196, 205);
+  --darkModeBackground: rgb(49, 47, 47);
 }
 
 .hidden {
@@ -23,6 +26,7 @@ body {
   justify-content: center;
   font-family: "Cal Sans", sans-serif;
   background-color: var(--backGroundPink);
+  color: black;
 }
 
 header {
@@ -30,6 +34,10 @@ header {
   top: 0;
   align-items: center;
   font-size: 1.1em;
+}
+
+h1 {
+  margin-bottom: -0.25em;
 }
 
 button {
@@ -44,13 +52,19 @@ button {
 }
 
 #points-display {
-  margin-right: 0.75em;
+  margin-right: 0.5em;
   margin-bottom: -1em;
 }
 
 #highscore-display {
-  margin-left: 0.75em;
+  margin-left: 0.5em;
   margin-bottom: -1em;
+}
+
+#mode-switcher {
+  margin-left: 0.5em;
+  font-size: 1.1em;
+  border-radius: 15%;
 }
 
 #game-state-container {
@@ -75,7 +89,7 @@ button {
 }
 
 main {
-  margin-top: 11em;
+  margin-top: 10.5em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -164,4 +178,27 @@ footer {
   position: fixed;
   top: 85%;
   font-size: 0.75em;
+}
+
+a:visited {
+  color: black;
+}
+
+.dark-mode {
+  color: var(--darkModeTextColor);
+  background-color: var(--darkModeBackground) !important;
+  button {
+    background-color: rgb(49, 47, 47);
+    color: var(--darkModeTextColor);
+    border: solid var(--darkModeTextColor) 0.15em;
+  }
+  #game-box1,
+  #game-box2,
+  #game-box3,
+  #game-box4 {
+    border: var(--darkModeBorderWidth);
+  }
+  a:visited {
+    color: var(--darkModeTextColor);
+  }
 }
