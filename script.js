@@ -14,18 +14,16 @@ title.addEventListener("click", () => {
   localStorage.clear();
 });
 
-const playerVals = {
-  highScore: 0,
-};
+let highScore = 0;
 
-const storedPlayerVals = localStorage.getItem("highscoreVal");
+const storedHighscore = localStorage.getItem("highscoreVal");
 
-console.log(typeof storedPlayerVals, storedPlayerVals);
+console.log(typeof storedHighscore, storedHighscore);
 
-if (storedPlayerVals !== null) {
-  highScoreDisplay.innerHTML = `High Score: ${storedPlayerVals}`;
+if (storedHighscore !== null) {
+  highScoreDisplay.innerHTML = `High Score: ${storedHighscore}`;
 } else {
-  highScoreDisplay.innerHTML = `High Score: ${playerVals.highScore}`;
+  highScoreDisplay.innerHTML = `High Score: ${highScore}`;
 }
 
 const boxesInfo = {
@@ -113,14 +111,14 @@ const successGuessHandler = () => {
 const noSuccessGuessHandler = () => {
   console.log("the user failed");
   infoText.innerHTML = "❌";
-  if (boxesInfo.points > playerVals.highScore) {
+  if (boxesInfo.points > highScore) {
     localStorage.clear();
-    playerVals.highScore = boxesInfo.points;
-    localStorage.setItem("highscoreVal", JSON.stringify(playerVals));
-    if (storedPlayerVals !== null) {
-      highScoreDisplay.innerHTML = `High Score: ${storedPlayerVals}`;
+    highScore = boxesInfo.points;
+    localStorage.setItem("highscoreVal", JSON.stringify(highScore));
+    if (storedHighscore !== null) {
+      highScoreDisplay.innerHTML = `High Score: ${storedHighscore}`;
     } else {
-      highScoreDisplay.innerHTML = `High Score: ${playerVals.highScore}`;
+      highScoreDisplay.innerHTML = `High Score: ${highScore}`;
     }
   }
   roundBtn.classList.add("hidden");
