@@ -64,7 +64,9 @@ button {
 
 #play {
   margin-top: 1em;
-  font-size: 1.15em;
+  font-size: 1.25em;
+  height: 3em;
+  width: 4em;
 }
 
 #game-info-text,
