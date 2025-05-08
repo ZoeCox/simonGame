@@ -3,8 +3,6 @@ let darkMode = false;
 
 const storedModePref = localStorage.getItem("darkModePref");
 
-console.log(storedModePref, typeof storedModePref);
-
 const modePrefExecuter = () => {
   if (storedModePref === "false" || storedModePref === null) {
     modeBtn.innerHTML = "🌙";
