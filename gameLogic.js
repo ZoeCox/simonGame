@@ -92,8 +92,14 @@ const playStart = () => {
 
 const patternLengthGen = () => {
   for (let i = 0; i < boxesInfo.roundFlashCount; i++) {
-    //fix the boxes being clickable when flashing!!
     setTimeout(randomPatternGen, 1500 * i);
+    setTimeout(() => {
+      console.log("time out has occurred");
+      boxesInfo.boxes[0].style.pointerEvents = "auto";
+      boxesInfo.boxes[1].style.pointerEvents = "auto";
+      boxesInfo.boxes[2].style.pointerEvents = "auto";
+      boxesInfo.boxes[3].style.pointerEvents = "auto";
+    }, 1500 * boxesInfo.roundFlashCount + 600);
   }
 };
 playBtn.addEventListener("click", playStart);
