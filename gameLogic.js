@@ -81,10 +81,9 @@ const randomPatternGen = () => {
 };
 
 const playStart = () => {
-  boxesInfo.boxes[0].style.pointerEvents = "none";
-  boxesInfo.boxes[1].style.pointerEvents = "none";
-  boxesInfo.boxes[2].style.pointerEvents = "none";
-  boxesInfo.boxes[3].style.pointerEvents = "none";
+  for (let i = 0; i < boxesInfo.boxes.length; i++) {
+    boxesInfo.boxes[i].style.pointerEvents = "none";
+  }
   playBtn.classList.add("hidden");
   infoText.innerHTML = "";
   patternLengthGen();
@@ -94,12 +93,10 @@ const patternLengthGen = () => {
   for (let i = 0; i < boxesInfo.roundFlashCount; i++) {
     setTimeout(randomPatternGen, 1500 * i);
     setTimeout(() => {
-      console.log("time out has occurred");
-      boxesInfo.boxes[0].style.pointerEvents = "auto";
-      boxesInfo.boxes[1].style.pointerEvents = "auto";
-      boxesInfo.boxes[2].style.pointerEvents = "auto";
-      boxesInfo.boxes[3].style.pointerEvents = "auto";
-    }, 1500 * boxesInfo.roundFlashCount + 600);
+      for (let j = 0; j < boxesInfo.boxes.length; j++) {
+        boxesInfo.boxes[j].style.pointerEvents = "auto";
+      }
+    }, 1500 * boxesInfo.roundFlashCount + 400);
   }
 };
 playBtn.addEventListener("click", playStart);
